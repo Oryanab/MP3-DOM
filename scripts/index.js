@@ -36,26 +36,49 @@ function playSongJson(song) {
     return `Playing ${song.title} from ${song.album} by ${song.artist} | ${turnTime(song.duration)}.`
 }
 
+// function playSong(songId) {
+//     for (let song in player.songs) {
+//         if (player.songs[song].id === songId) {
+//             return playSongJson(player.songs[songId])
+//         } else {
+//             throw "id is not valid"
+//         }
+//     }
+// }
+
 function playSong(songId) {
-    for (let song in player.songs) {
-        if (player.songs[song].id === songId) {
-            return playSongJson(player.songs[songId])
-        } else {
-            throw "id is not valid"
-        }
-    }
+    const song = document.getElementById(songId)
+    song.addEventListener(
+        "click",
+        function () {
+            song.classList.add("activeitem")
+        },
+        false
+    )
+}
+
+function playPlaylist(id) {
+    const playlist = document.getElementById(id)
+    playlist.addEventListener(
+        "click",
+        function () {
+            playlist.classList.add("activeitem")
+        },
+        false
+    )
 }
 
 /**
  * Creates a song DOM element based on a song object.
  */
+
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
     let children = [
         createElement("img", null, ["image"], { src: coverArt }),
-        createElement("p", title, [], {}),
-        createElement("p", album, [], {}),
-        createElement("p", artist, [], {}),
-        createElement("p", turnTime(duration), [], {}),
+        createElement("p", title, [], { id: "title" }),
+        createElement("p", album, [], { id: "album" }),
+        createElement("p", artist, [], { id: "album" }),
+        createElement("p", turnTime(duration), [], { id: "duration" }),
     ]
     const classes = ["item"]
     const attrs = { onclick: `playSong(${id})`, id }
@@ -68,25 +91,13 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
 function createPlaylistElement({ id, name, songs }) {
     let duration = turnTime(playlistDuration(id))
     const children = [
-        createElement("p", `${name} - `, [], {}),
-        createElement("p", `${songs.length} Songs - `, [], {}),
-        createElement("p", ` ${duration} `, [], {}),
+        createElement("p", `${name} - `, [], { id: "playlist" }),
+        createElement("p", `${songs.length} Songs - `, [], { id: "album" }),
+        createElement("p", ` ${duration} `, [], { id: "duration" }),
     ]
     const classes = ["item"]
-    const attrs = { onclick: `playSong(${id})`, id }
+    const attrs = { onclick: `playPlaylist(${id})`, id }
     return createElement("div", children, classes, attrs)
-}
-
-function displayAllSongsDivs(songObject) {
-    // we are creating a function which
-    const songdiv = document.getElementsByClassName("item")
-    for (let song of player.songs) {
-        songdiv.append(song)
-    }
-
-    const p = document.createElement("p")
-    p.append(playSongJson(i))
-    ul.append(p)
 }
 
 /**

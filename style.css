@@ -27,9 +27,29 @@ body {
     margin-top: 5px;
     padding: 5px;
 
-    justify-content: center;
-    text-align: center;
+    /* justify-content:center;
+    text-align: center; */
     align-items: center;
+
+    border-radius: 5px;
+    border: solid pink;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}
+
+.activeitem {
+    background-color: pink;
+    display: inline-flex;
+    height: 40px;
+    width: 380px;
+    margin-top: 5px;
+    padding: 5px;
+
+    /* justify-content: center;
+    text-align: center;
+    align-items: center; */
 
     border-radius: 5px;
     border: solid pink;
@@ -46,4 +66,17 @@ body {
 .image {
     height: 30px;
     width: 30px;
+    padding-right: 10px;
+}
+
+#duration {
+    padding-left: 30px;
+}
+
+#album {
+    padding: 5px;
+}
+
+#title {
+    font-weight: 900;
 }
