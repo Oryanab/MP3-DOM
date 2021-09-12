@@ -1,1 +1,49 @@
 /* Your code here */
+body {
+    background-color: #282a35;
+}
+
+.songs {
+    background: linear-gradient(0.25turn, #e66465, #9198e5);
+    height: 700px;
+    width: 450px;
+
+    margin-top: 5%;
+    margin-left: 35%;
+
+    border-radius: 20px;
+    box-shadow: white;
+    z-index: 2;
+
+    text-align: center;
+    padding: 5px;
+}
+
+.item {
+    background-color: white;
+    display: inline-flex;
+    height: 40px;
+    width: 380px;
+    margin-top: 5px;
+    padding: 5px;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    border-radius: 5px;
+    border: solid pink;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}
+
+.title {
+    font-family: fantasy;
+}
+
+.image {
+    height: 30px;
+    width: 30px;
+}
