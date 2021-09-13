@@ -59,11 +59,11 @@ function playSong(songId) {
 
 function createSongElement({ id, title, album, artist, duration, coverArt }) {
     let children = [
-        createElement("img", null, ["image"], { src: coverArt }),
-        createElement("p", title, [], { id: "title" }),
-        createElement("p", album, [], { id: "album" }),
-        createElement("p", artist, [], { id: "album" }),
-        createElement("p", turnTime(duration), [], { id: "duration" }),
+        createElement("img", [], ["image"], { src: coverArt }),
+        createElement("p", [title], [], { id: "title" }),
+        createElement("p", [album], [], { id: "album" }),
+        createElement("p", [artist], [], { id: "album" }),
+        createElement("p", [turnTime(duration)], [], { id: "duration" }),
     ]
     const classes = ["item"]
     const attrs = { onclick: `playSong(${id})`, id }
@@ -76,12 +76,12 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
 function createPlaylistElement({ id, name, songs }) {
     let duration = turnTime(playlistDuration(id))
     const children = [
-        createElement("p", `${name} - `, [], { id: "playlist" }),
-        createElement("p", `${songs.length} Songs - `, [], { id: "album" }),
-        createElement("p", ` ${duration} `, [], { id: "duration" }),
+        createElement("p", [`${name} - `], [], { id: "playlist" }),
+        createElement("p", [`${songs.length} Songs - `], [], { id: "album" }),
+        createElement("p", [` ${duration} `], [], { id: "duration" }),
     ]
     const classes = ["item"]
-    const attrs = { onclick: `playPlaylist(${id})`, id }
+    const attrs = { onclick: `playSong(${id})`, id }
     return createElement("div", children, classes, attrs)
 }
 
@@ -98,24 +98,46 @@ function createPlaylistElement({ id, name, songs }) {
  * @param {Object} attributes - the attributes for the new element
  */
 
+// My fisrt solution for Create element:
+
+// function createElement(tagName, children = [], classes = [], attributes = {}) {
+//     let newElemnet = document.createElement(tagName)
+//     for (let classAttribute of classes) {
+//         newElemnet.classList.add(classAttribute)
+//     }
+//     for (let attribute in attributes) {
+//         newElemnet.setAttribute(attribute, attributes[attribute])
+//     }
+//     if (Array.isArray(children)) {
+//         for (let child of children) {
+//             newElemnet.appendChild(child)
+//         }
+//     } else {
+//         newElemnet.innerHTML = children
+//     }
+
+//     return newElemnet
+// }
+
+// Tomer's solution for Create element (rest is the same):
 function createElement(tagName, children = [], classes = [], attributes = {}) {
-    let newElemnet = document.createElement(tagName)
-    for (let classAttribute of classes) {
-        newElemnet.classList.add(classAttribute)
+    const el = document.createElement(tagName)
+    // Children
+    for (const child of children) {
+        el.append(child)
     }
-    for (let attribute in attributes) {
-        newElemnet.setAttribute(attribute, attributes[attribute])
+    // Classes
+    for (const cls of classes) {
+        el.classList.add(cls)
     }
-    if (Array.isArray(children)) {
-        for (let child of children) {
-            newElemnet.appendChild(child)
-        }
-    } else {
-        newElemnet.innerHTML = children
+    // Attributes
+    for (const attr in attributes) {
+        el.setAttribute(attr, attributes[attr])
     }
-    return newElemnet
+    return el
 }
 
+// Loop through the elements:
 const body = document.body
 const songHtml = document.getElementById("songs")
 const playlistHtml = document.getElementById("playlist")
