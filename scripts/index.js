@@ -48,24 +48,9 @@ function playSongJson(song) {
 
 function playSong(songId) {
     const song = document.getElementById(songId)
-    song.addEventListener(
-        "click",
-        function () {
-            song.classList.add("activeitem")
-        },
-        false
-    )
-}
-
-function playPlaylist(id) {
-    const playlist = document.getElementById(id)
-    playlist.addEventListener(
-        "click",
-        function () {
-            playlist.classList.add("activeitem")
-        },
-        false
-    )
+    const allsongs = document.querySelectorAll("div .item")
+    allsongs.forEach((choice) => choice.classList.remove("activeitem"))
+    song.classList.add("activeitem")
 }
 
 /**
