@@ -70,7 +70,7 @@ body {
     float: left;
 }
 
-#duration {
+/* #duration {
     padding-left: 30px;
     float: right;
 }
@@ -81,7 +81,7 @@ body {
 
 #title {
     font-weight: 900;
-}
+} */
 
 .playlistitem {
     background-color: white;
