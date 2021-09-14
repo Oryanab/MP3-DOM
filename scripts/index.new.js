@@ -54,9 +54,10 @@ function playSong(songId) {
  *
  * @param {Number} songId - the ID of the song to remove
  */
-function removeSong(songId) {
-    // Your code here
-}
+
+// function removeSong(songId) {
+//     // Your code here
+// }
 
 /**
  * Adds a song to the player, and updates the DOM to match.
@@ -72,7 +73,6 @@ function addSong({ title, album, artist, duration, coverArt }) {
     }
     const songDiv = document.getElementById("songs")
     player.songs.push(addNewSong)
-    // generateAddedSongs(addNewSong)
     const addedNewSong = songDiv.appendChild(createSongElement(addNewSong))
     addedNewSong.appendChild(handleSongClickEvent())
     return alert("Song Added Successfuly")
@@ -86,31 +86,27 @@ function addSong({ title, album, artist, duration, coverArt }) {
  */
 
 // The function will create the button with functionality
-//but not add it return it!
+//but add it only to the default else return it!
 function handleSongClickEvent() {
     const itembox = document.getElementsByClassName("item")
     const cancelButton = document.createElement("span")
     cancelButton.textContent = "⛔️"
     const close = document.querySelectorAll("span")
-    // adding the button to defualt songs
-    for (let btn of close) {
-        btn.addEventListener("click", (e) => {
-            btn.parentNode.remove()
-        })
-    }
+    // adding the button to defualt songs:
     for (let item of itembox) {
+        for (let btn of close) {
+            btn.addEventListener("click", (e) => {
+                btn.parentNode.remove()
+            })
+        }
         item.append(cancelButton)
     }
-
+    // Finally adding the button for any new song:
     cancelButton.addEventListener("click", (e) => {
         cancelButton.parentNode.remove()
     })
-    // adding the button for any new song
     return cancelButton
 }
-
-// The function will create the button with functionality
-//but add it not return it!
 
 /**
  * Handles a click event on the button that adds songs.
@@ -205,26 +201,19 @@ function createElement(tagName, children = [], classes = [], attributes = {}, ev
 /**
  * Inserts all songs in the player as DOM elements into the songs list.
  */
-const SONGHTML = document.getElementById("songs")
 
 // This function aims to geanerate the default songs given at player.js
-function generateDefaultSongs() {
+function generateSongs() {
+    const SONGHTML = document.getElementById("songs")
     for (let song of player.songs) {
         SONGHTML.appendChild(createSongElement(song))
         handleSongClickEvent()
     }
 }
-
-// This function aims to geanerate any additional songs
-// function generateAddedSongs(song) {
-//     SONGHTML.appendChild(createSongElement(song))
-//     handleSongClickEvent()
-// }
-
 /**
  * Inserts all playlists in the player as DOM elements into the playlists list.
  */
-
+// This function aims to geanerate the default playlist given at player.js
 function generatePlaylists() {
     const playlistHtml = document.getElementById("playlist")
     for (let playlist of player.playlists) {
@@ -234,14 +223,11 @@ function generatePlaylists() {
 }
 
 // Creating the page structure
-generateDefaultSongs()
+generateSongs()
 generatePlaylists()
 
 // Making the add-song-button actually do something
 document.getElementById("add-button").addEventListener("click", handleAddSongEvent)
-
-// Loop through the elements:
-const body = document.body
 
 /* Working Notes(anything come on mind):
 1. The idea is to add the input form fields to the player.js and it will add authomaticali
