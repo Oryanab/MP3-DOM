@@ -28,6 +28,12 @@ function playlistDuration(id) {
     return count
 }
 
+function minutesToSeconds(duration) {
+    let m = duration[0] + duration[1]
+    let s = duration[3] + duration[4]
+    return (finalDuration = +m * 60 + +s)
+}
+
 function ganerateSongId() {
     let idList = []
     for (let song of player.songs) {
@@ -42,11 +48,50 @@ function ganerateSongId() {
  *
  * @param {Number} songId - the ID of the song to play
  */
-function playSong(songId) {
+
+// This function adds the active song class and added to each item later
+function selectSong(songId) {
     const song = document.getElementById(songId)
     const allsongs = document.querySelectorAll("div .item")
     allsongs.forEach((choice) => choice.classList.remove("activeitem"))
     song.classList.add("activeitem")
+}
+
+function playSong() {
+    const allitems = document.getElementsByClassName("item")
+    const playButton = document.createElement("p")
+    playButton.setAttribute("id", "playsong")
+    // playButton.classList.add("play-song")
+    playButton.textContent = "▶️"
+    // adding the button to defualt songs:
+    playButton.addEventListener("click", (e) => {
+        const songDuration = minutesToSeconds(playButton.parentNode.children.duration.textContent)
+        if (playButton.textContent === "▶️") {
+            // allow making sure only one song play at the time and pausing:
+            for (let item of allitems) {
+                item.children.playsong.textContent = "▶️"
+            }
+            playButton.textContent = "⏸"
+            console.log(playButton.parentNode)
+        } else {
+            playButton.textContent = "▶️"
+        }
+    })
+
+    for (let item of allitems) {
+        item.prepend(playButton)
+    }
+
+    // ################################################
+}
+
+function timer() {
+    // Add a function which select the item and return its duration
+    // turn it into seconds and display the timer on it
+    // when the button gets clicked its going to desplay ⏸
+    // and stop the timer, another click will continue
+    // untill time == 0 and its move to the next song
+    // last, assign the function to play
 }
 
 /**
@@ -142,10 +187,10 @@ function createSongElement({ id, title, album, artist, duration, coverArt }) {
         createElement("p", [title], [], { id: "title" }),
         createElement("p", [album], [], { id: "album" }),
         createElement("p", [artist], [], { id: "album" }),
-        createElement("p", [turnTime(duration)], [], { id: "dur" }),
+        createElement("p", [turnTime(duration)], [], { id: "duration" }),
     ]
     const classes = ["item"]
-    const attrs = { onclick: `playSong(${id})`, id }
+    const attrs = { onclick: `selectSong(${id})`, id }
     return createElement("div", children, classes, attrs)
 }
 
@@ -160,7 +205,7 @@ function createPlaylistElement({ id, name, songs }) {
         createElement("p", [` ${duration} `], [], { id: "duration" }),
     ]
     const classes = ["item"]
-    const attrs = { onclick: `playSong(${id})`, id }
+    const attrs = { onclick: `selectSong(${id})`, id }
     return createElement("div", children, classes, attrs)
 }
 
@@ -208,6 +253,7 @@ function generateSongs() {
     for (let song of player.songs) {
         SONGHTML.appendChild(createSongElement(song))
         handleSongClickEvent()
+        playSong()
     }
 }
 /**
@@ -219,6 +265,7 @@ function generatePlaylists() {
     for (let playlist of player.playlists) {
         playlistHtml.appendChild(createPlaylistElement(playlist))
         handleSongClickEvent()
+        playSong()
     }
 }
 

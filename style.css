@@ -6,7 +6,7 @@ body {
 .songs {
     background: linear-gradient(0.25turn, #e66465, #9198e5);
     height: 700px;
-    width: 450px;
+    width: 500px;
 
     margin-top: 5%;
     margin-left: 35%;
@@ -23,7 +23,7 @@ body {
     background-color: white;
     display: inline-flex;
     height: 40px;
-    width: 380px;
+    width: 450px;
     margin-top: 5px;
     padding: 5px;
 
@@ -43,7 +43,7 @@ body {
     background-color: pink;
     display: inline-flex;
     height: 40px;
-    width: 380px;
+    width: 450px;
     margin-top: 5px;
     padding: 5px;
 
