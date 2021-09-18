@@ -1,27 +1,64 @@
 /* Your code here */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 body {
     background-color: #282a35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.songs {
-    background: linear-gradient(0.25turn, #e66465, #9198e5);
-    height: 700px;
-    width: 500px;
+#inputs {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
 
+#add-section {
+    background: linear-gradient(0.25turn, #de98ff, #51ffcb);
+    height: 450px;
+    width: 350px;
     margin-top: 5%;
-    margin-left: 35%;
-
+    margin-right: 10%;
     border-radius: 20px;
     box-shadow: white;
     z-index: 2;
-
-    text-align: center;
     padding: 5px;
+    
+    
+    
+}
+
+.form-element {
+    display: flex;
+    flex-direction: table-column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 2rem;
+    margin-bottom: 1px;
+    margin-left: 3px;
+    
+}
+
+#add-button{
+    font-family:'Oswald', sans-serif;
+    background-color: white;
+    border: solid white;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: violet;
+    width: 98%;
+    text-align: center;
+    
 }
 
 .item {
     background-color: white;
-    display: inline-flex;
+    display: flex;
+
     height: 40px;
     width: 450px;
     margin-top: 5px;
@@ -29,10 +66,9 @@ body {
 
     /* justify-content:center;
     text-align: center; */
-    align-items: center;
 
-    border-radius: 5px;
-    border: solid pink;
+    align-items: center;
+    border: solid white;
     box-shadow: white;
     z-index: 3;
     border-collapse: separate;
@@ -40,19 +76,14 @@ body {
 }
 
 .activeitem {
-    background-color: pink;
-    display: inline-flex;
+    background-color: white;
+    display: flex;
     height: 40px;
     width: 450px;
     margin-top: 5px;
     padding: 5px;
-
-    /* justify-content: center;
-    text-align: center;
-    align-items: center; */
-
-    border-radius: 5px;
-    border: solid pink;
+    border: solid green;
+    border-width: 5px;
     box-shadow: white;
     z-index: 3;
     border-collapse: separate;
@@ -60,30 +91,20 @@ body {
 }
 
 .title {
-    font-family: fantasy;
+    font-family:'Oswald', sans-serif;
+    color: white;
+    letter-spacing: 1px;
+    text-align: center;
 }
 
 .image {
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     padding-right: 10px;
     float: left;
 }
 
-/* #duration {
-    padding-left: 30px;
-    float: right;
-}
-
-#album {
-    padding: 5px;
-}
-
-#title {
-    font-weight: 900;
-} */
-
-.playlistitem {
+/* .playlistitem {
     background-color: white;
     display: inline-flex;
     height: 40px;
@@ -91,8 +112,7 @@ body {
     margin-top: 5px;
     padding: 5px;
 
-    /* justify-content:center;
-    text-align: center; */
+    
     align-items: center;
 
     border-radius: 5px;
@@ -101,9 +121,9 @@ body {
     z-index: 3;
     border-collapse: separate;
     font-family: sans-serif;
-}
+}  */
 
-.playlistactiveitem {
+/* .playlistactiveitem {
     background-color: pink;
     display: inline-flex;
     height: 40px;
@@ -111,9 +131,7 @@ body {
     margin-top: 5px;
     padding: 5px;
 
-    /* justify-content: center;
-    text-align: center;
-    align-items: center; */
+    
 
     border-radius: 5px;
     border: solid pink;

@@ -33,6 +33,7 @@ function minutesToSeconds(duration) {
     let s = duration[3] + duration[4]
     return (finalDuration = +m * 60 + +s)
 }
+console.log(minutesToSeconds("25:36"))
 
 function ganerateSongId() {
     let idList = []
@@ -53,8 +54,21 @@ function ganerateSongId() {
 function selectSong(songId) {
     const song = document.getElementById(songId)
     const allsongs = document.querySelectorAll("div .item")
-    allsongs.forEach((choice) => choice.classList.remove("activeitem"))
+    allsongs.forEach((choice) => {
+        choice.style.borderColor = "white"
+        choice.classList.remove("activeitem")
+    })
     song.classList.add("activeitem")
+    if (minutesToSeconds(song.children.duration.innerHTML) < 120) {
+        song.style.borderColor = "green"
+    } else if (
+        minutesToSeconds(song.children.duration.innerHTML) > 120 &&
+        minutesToSeconds(song.children.duration.innerHTML) < 300
+    ) {
+        song.style.borderColor = "pink"
+    } else {
+        song.style.borderColor = "red"
+    }
 }
 
 function playTheSong() {
@@ -95,13 +109,17 @@ function playSong() {
 
     playButton.addEventListener("click", (e) => {
         counter = 0
+        timeToSong = playButton.parentNode.children.duration // document.getElementById("duration") duration tag catch
+
+        const beginTime = timeToSong.textContent
+        songSecondsDuration = minutesToSeconds(timeToSong.innerHTML)
         if (playButton.textContent === "▶️") {
             for (let item of allitems) {
                 item.children.playsong.textContent = "▶️"
             }
-            timeToSong = playButton.parentNode.children.duration // document.getElementById("duration") duration tag catch
-            const beginTime = timeToSong.textContent
-            songSecondsDuration = minutesToSeconds(timeToSong.innerHTML)
+
+            console.log(beginTime)
+            console.log(songSecondsDuration)
 
             playButton.textContent = "⏸"
             clearInterval(interval)

@@ -9,22 +9,22 @@
         <script src="./scripts/index.new.js" defer></script>
     </head>
     <body>
-        <h1>Awesome Player!!!</h1>
+        <!-- <h1>Awesome Player!!!</h1> -->
         <div id="add-section">
-            <h2>Add a new song</h2>
+            <h2 class="title">Add a new song</h2>
             <div id="inputs">
-                <input id="title" name="title" placeholder="Title" />
-                <input id="album" name="album" placeholder="Album" />
-                <input id="artist" name="artist" placeholder="Artist" />
-                <input id="duration" name="duration" placeholder="Duration (mm:ss)" />
-                <input id="cover-art" name="cover-art" placeholder="Cover art link" />
+                <input class="form-element" id="title" name="title" placeholder="Title" /><br />
+                <input class="form-element" id="album" name="album" placeholder="Album" /><br />
+                <input class="form-element" id="artist" name="artist" placeholder="Artist" /><br />
+                <input class="form-element" id="duration" name="duration" placeholder="Duration (mm:ss)" /><br />
+                <input class="form-element" id="cover-art" name="cover-art" placeholder="Cover art link" /><br />
+                <button class="form-element" id="add-button">Add</button>
             </div>
-            <button id="add-button">Add</button>
         </div>
         <div class="songs">
-            <h3 class="title">"Hard Times Songs"</h3>
+            <h3 class="title">My Favorite Songs</h3>
             <div id="songs"></div>
-            <h4 class="title">"Hard Times Playlists"</h4>
+            <h4 class="title">My Playlists</h4>
             <div id="playlist"></div>
             <!-- <div class="title">
                 <p>This is a titile</p>
