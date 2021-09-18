@@ -57,6 +57,31 @@ function selectSong(songId) {
     song.classList.add("activeitem")
 }
 
+function playTheSong() {
+    counter++
+    let timeLeft = songSecondsDuration - counter
+    let minuts = Math.floor(timeLeft / 60)
+    let seconds = timeLeft % 60
+
+    if (timeLeft < 0) {
+        timeToSong.innerHTML = beginTime
+        clearInterval(interval)
+    } else if (minuts < 10 && seconds < 10) {
+        timeToSong.innerHTML = `0${minuts}:0${seconds}`
+    } else if (minuts < 10) {
+        timeToSong.innerHTML = `0${minuts}:${seconds}`
+    } else if (seconds < 10) {
+        timeToSong.innerHTML = `${minuts}:0${seconds}`
+    } else {
+        timeToSong.innerHTML = `${minuts}:${seconds}`
+    }
+}
+
+// Starting variables for the countdown machanism
+let timeToSong
+let counter
+let songSecondsDuration
+let interval
 function playSong() {
     const allitems = document.getElementsByClassName("item")
     const playButton = document.createElement("p")
@@ -64,34 +89,29 @@ function playSong() {
     // playButton.classList.add("play-song")
     playButton.textContent = "▶️"
     // adding the button to defualt songs:
-    playButton.addEventListener("click", (e) => {
-        const songDuration = minutesToSeconds(playButton.parentNode.children.duration.textContent)
-        if (playButton.textContent === "▶️") {
-            // allow making sure only one song play at the time and pausing:
-            for (let item of allitems) {
-                item.children.playsong.textContent = "▶️"
-            }
-            playButton.textContent = "⏸"
-            console.log(playButton.parentNode)
-        } else {
-            playButton.textContent = "▶️"
-        }
-    })
-
     for (let item of allitems) {
         item.prepend(playButton)
     }
 
-    // ################################################
-}
+    playButton.addEventListener("click", (e) => {
+        counter = 0
+        if (playButton.textContent === "▶️") {
+            for (let item of allitems) {
+                item.children.playsong.textContent = "▶️"
+            }
+            timeToSong = playButton.parentNode.children.duration // document.getElementById("duration") duration tag catch
+            const beginTime = timeToSong.textContent
+            songSecondsDuration = minutesToSeconds(timeToSong.innerHTML)
 
-function timer() {
-    // Add a function which select the item and return its duration
-    // turn it into seconds and display the timer on it
-    // when the button gets clicked its going to desplay ⏸
-    // and stop the timer, another click will continue
-    // untill time == 0 and its move to the next song
-    // last, assign the function to play
+            playButton.textContent = "⏸"
+            clearInterval(interval)
+            interval = setInterval(playTheSong, 1000)
+        } else {
+            playButton.textContent = "▶️"
+            clearInterval(interval)
+        }
+    })
+    return playButton
 }
 
 /**
@@ -120,6 +140,7 @@ function addSong({ title, album, artist, duration, coverArt }) {
     player.songs.push(addNewSong)
     const addedNewSong = songDiv.appendChild(createSongElement(addNewSong))
     addedNewSong.appendChild(handleSongClickEvent())
+    addedNewSong.prepend(playSong())
     return alert("Song Added Successfuly")
 }
 
@@ -164,7 +185,7 @@ function handleAddSongEvent(event) {
     const title = document.getElementById("title").value
     const album = document.getElementById("album").value
     const artist = document.getElementById("artist").value
-    const duration = document.getElementById("duration").value
+    const duration = minutesToSeconds(document.getElementById("duration").value)
     const coverArt = document.getElementById("cover-art").value
     addSongBtn.addEventListener(
         "click",
