@@ -1,1 +1,142 @@
 /* Your code here */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+body {
+    background-color: #282a35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inputs {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+#add-section {
+    background: linear-gradient(0.25turn, #de98ff, #51ffcb);
+    height: 450px;
+    width: 350px;
+    margin-top: 5%;
+    margin-right: 10%;
+    border-radius: 20px;
+    box-shadow: white;
+    z-index: 2;
+    padding: 5px;
+    
+    
+    
+}
+
+.form-element {
+    display: flex;
+    flex-direction: table-column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 2rem;
+    margin-bottom: 1px;
+    margin-left: 3px;
+    
+}
+
+#add-button{
+    font-family:'Oswald', sans-serif;
+    background-color: white;
+    border: solid white;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: violet;
+    width: 98%;
+    text-align: center;
+    
+}
+
+.item {
+    background-color: white;
+    display: flex;
+
+    height: 40px;
+    width: 450px;
+    margin-top: 5px;
+    padding: 5px;
+
+    /* justify-content:center;
+    text-align: center; */
+
+    align-items: center;
+    border: solid white;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}
+
+.activeitem {
+    background-color: white;
+    display: flex;
+    height: 40px;
+    width: 450px;
+    margin-top: 5px;
+    padding: 5px;
+    border: solid green;
+    border-width: 5px;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}
+
+.title {
+    font-family:'Oswald', sans-serif;
+    color: white;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.image {
+    height: 50px;
+    width: 50px;
+    padding-right: 10px;
+    float: left;
+}
+
+/* .playlistitem {
+    background-color: white;
+    display: inline-flex;
+    height: 40px;
+    width: 380px;
+    margin-top: 5px;
+    padding: 5px;
+
+    
+    align-items: center;
+
+    border-radius: 5px;
+    border: solid pink;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}  */
+
+/* .playlistactiveitem {
+    background-color: pink;
+    display: inline-flex;
+    height: 40px;
+    width: 380px;
+    margin-top: 5px;
+    padding: 5px;
+
+    
+
+    border-radius: 5px;
+    border: solid pink;
+    box-shadow: white;
+    z-index: 3;
+    border-collapse: separate;
+    font-family: sans-serif;
+}

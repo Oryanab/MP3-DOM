@@ -58,7 +58,7 @@ const player = {
         },
     ],
     playlists: [
-        { id: 1, name: "Metal", songs: [1, 7, 4, 6] },
-        { id: 5, name: "Israeli", songs: [4, 5] },
+        { id: 100, name: "Metal", songs: [1, 7, 4, 6] },
+        { id: 101, name: "Israeli", songs: [4, 5] },
     ],
 }
